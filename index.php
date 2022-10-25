@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Library MAnagement System</title>
+    <title>Home - Library Management System</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
 
 <body class="page-container">
     
-    <header class="page-header" id="page-top">
+    <header class="page-header">
 
         <nav class="nav-bar" id="main-nav">
 
@@ -26,9 +26,9 @@
 
             <div>
                 <ul class="main-nav-list">
-                    <li><a class="nav-list-items" href="#home-section2">SERVICES</a></li>
-                    <li><a class="nav-list-items" href="#books">BOOKS</a></li>
-                    <li><a class="nav-list-items" href="#contact">CONTACT</a></li>
+                    <li><a class="nav-list-items" href="#services-section">SERVICES</a></li>
+                    <li><a class="nav-list-items" href="#books-section">BOOKS</a></li>
+                    <li><a class="nav-list-items" href="#contact-section">CONTACT</a></li>
                     <li class="nav-user" id="nav-sign-in"><a href="">SIGN IN</a></li>
                     <li class="nav-user" id="nav-admin"><a href="">ADMIN</a></li>
                 </ul>
@@ -38,56 +38,140 @@
 
     <main>
 
-    <section class="home-sections" id="home-section1">
-        <div id="page-intro">
-            <div class="text-overlay">
-                <h1>A Digital Library For Everyone</h1>
-                <p>Library Management System for users, essentially students, and Librarian/Admin.</p>
+        <section class="home-sections" id="page-top">
+            <div id="page-intro">
+                <div class="text-overlay">
+                    <h1>A Digital Library For Everyone</h1>
+                    <p>Library Management System for users, essentially students, and Librarian/Admin.</p>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="home-sections" id="home-section2">
-        
-        <div id="container-box">
-            <div class="section-title">
-                <h2>SERVICES</h2>
-            </div>
+        <section class="home-sections" id="services-section">
             
-            <div id="services-container">
+            <div class="section-box">
+                <div class="section-title">
+                    <h2>SERVICES</h2>
+                </div>
                 
-                <div class="service-list" id="service1">
-                    <div class="service-img">
-                        <img src="imgs\gettyimages-949118068.jpg" alt="">
+                <div id="services-container">
+                    
+                    <div class="service-list" id="service1">
+                        <div class="service-img">
+                            <img src="imgs\gettyimages-949118068.jpg" alt="">
+                        </div>
+                        <div class="service-info">
+                            <h3>CATALOG</h3>
+                            <p>Range of books, from educational to fiction, readily available.</p>
+                        </div>
                     </div>
-                    <div class="service-info">
-                        <h3>CATALOG</h3>
-                        <p>Range of books, from educational to fiction, readily available.</p>
-                    </div>
-                </div>
 
-                <div class="service-list" id="service2">
-                    <div class="service-img">
-                        <img src="imgs\Library-Management-System-src.jpg" alt="">
+                    <div class="service-list" id="service2">
+                        <div class="service-img">
+                            <img src="imgs\Library-Management-System-src.jpg" alt="">
+                        </div>
+                        <div class="service-info">
+                            <h3>RESERVE</h3>
+                            <p>Reserve as many books as you like through your user account.</p>
+                        </div>
                     </div>
-                    <div class="service-info">
-                        <h3>RESERVE</h3>
-                        <p>Reserve as any books as you like through your user account.</p>
-                    </div>
-                </div>
 
-                <div class="service-list" id="service3">
-                    <div class="service-img">
-                        <img src="imgs\4.jpg" alt="">
-                    </div>
-                    <div class="service-info">
-                        <h3>ISSUE</h3>
-                        <p>Borrow books from the library for free, and return within set time.</p>
+                    <div class="service-list" id="service3">
+                        <div class="service-img">
+                            <img src="imgs\4.jpg" alt="">
+                        </div>
+                        <div class="service-info">
+                            <h3>ISSUE</h3>
+                            <p>Borrow books from the library for free, and return within set time.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <section class="home-sections" id="books-section">
+            <div class="section-box">
+                <div class="section-title">
+                    <h2>TOP PICKS</h2>
+                </div>
+
+                <div id="services-container">
+                    
+                    <div class="service-list" id="service1">
+                        <div class="service-img">
+                            <img src="imgs\gettyimages-949118068.jpg" alt="">
+                        </div>
+                        <div class="service-info">
+                            <h3>CATALOG</h3>
+                            <p>Range of books, from educational to fiction, readily available.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-list" id="service2">
+                        <div class="service-img">
+                            <img src="imgs\Library-Management-System-src.jpg" alt="">
+                        </div>
+                        <div class="service-info">
+                            <h3>RESERVE</h3>
+                            <p>Reserve as any books as you like through your user account.</p>
+                        </div>
+                    </div>
+
+                    <div class="service-list" id="service3">
+                        <div class="service-img">
+                            <img src="imgs\4.jpg" alt="">
+                        </div>
+                        <div class="service-info">
+                            <h3>ISSUE</h3>
+                            <p>Borrow books from the library for free, and return within set time.</p>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="catalog-btn">
+                    <a href="#">VIEW CATALOG</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="home-sections" id="contact-section">
+
+            <div class="section-box">
+
+                <div class="section-title">
+                    <h2>CONTACT</h2>
+                </div>
+
+                <div class="contact-content">
+
+                    <div class="paragraph">
+                        <h3>Contact Info</h3>
+                        <p>Reach us by phone: <br> <a href="tel:123-456-7890">123-456-7890</a></p>
+                        <p>Or contact us by email: <br> <a href="mailto:librarymanagement@gmail.com">librarymanagement@gmail.com</a></p>
+                    </div>
+                    
+                    <div class="paragraph">
+                        <h3>Hours</h3>
+                        <p><b>Monday - Thursday</b><br>10:00A.M. - 08:00 P.M.</p>
+                        <p><b>Friday - Saturday</b><br>10:00A.M. - 05:00 P.M.</p>
+                        <p><b>Sunday</b><br>Closed.</p>
+                    </div>
+
+                    <div class="paragraph">
+                        <h3>Address</h3>
+                        <p>10113, Faraday,<br> North Nicosia, Cyprus.</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
     </main>
+
+    <footer>
+        <p>Designed and Developed by <b><a href="https://portfolio-task.paulapetra.repl.co/" target="_blank">Paula-Petra.</a></b></p>
+    </footer>
 </body>
 </html>
