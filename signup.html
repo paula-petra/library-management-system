@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In - Library Management System</title>
+    <title>Sign Up - Library Management System</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -38,21 +38,41 @@
 
         <main class="form-pages">
             <div class="form-container">
-                <form id="signin-form" action="">
+                <form id="signup-form" action="connect.php" method="post"> <!-- action="connect.php" method="post" -->
                     <div class="form-title">
-                        <h2>USER SIGN IN</h2>
+                        <h2>USER SIGN UP</h2>
                     </div>
 
                     <div class="form-fields">
-                        <input type="email" name="email" id="email" placeholder="E-mail*" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
-                        <input type="password" name="password" id="password" placeholder="Password*" required>
-                        <a href="">Forgot Password</a>
+                        <div class="form-control">
+                            <input type="text" name="firstName" id="firstName" placeholder="First Name*" required>
+                            <small>error message</small>
+                        </div>
+                        <div class="form-control">
+                            <input type="text" name="lastName" id="lastName" placeholder="Last Name*" required>
+                            <small>error message</small>
+                        </div>
+                        <div class="form-control">
+                            <input type="tel" name="phoneNo" id="phoneNo" placeholder="Phone Number*" required>
+                            <small>error message</small>
+                        </div>
+                        <div class="form-control">
+                            <input type="email" name="email" id="email" placeholder="E-mail*" required>
+                            <small>error message</small>
+                        </div>
+                        <div class="form-control">
+                            <input type="password" name="password" id="password" placeholder="Password*" required>
+                            <small>error message</small>
+                        </div>
+                        <div class="form-control">
+                            <input type="password" name="password" id="confirm-password" placeholder="Confirm Password*" required>
+                            <small>error message</small>
+                        </div>
                     </div>
 
-                    <div>
-                        <input id="signin-submit" class="user-submit form-submit" type="submit" value="LOGIN">
-
-                        <a href="signup.html">Sign Up</a>
+                    <div id="submit-control" class="form-control">
+                        <input onclick="checkInputs();submitSignUp()" id="signup-submit" class="user-submit form-submit" type="submit" value="SIGN UP" >
+                        <a href="signin.php">Sign In</a>
                     </div>
                 </form>
             </div>
@@ -63,4 +83,6 @@
         </footer>
     
 </body>
+
+<script src="script.js"></script>
 </html>

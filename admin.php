@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In - Library Management System</title>
+    <title>Admin Sign In - Library Management System</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
 
 <body>
 
-        <header class="page-header">
+    <header class="page-header">
 
             <nav class="nav-bar" id="main-nav">
 
@@ -38,21 +38,18 @@
 
         <main class="form-pages">
             <div class="form-container">
-                <form id="signin-form" action="">
+                <form id="admin-form" action="">
                     <div class="form-title">
-                        <h2>USER SIGN IN</h2>
+                        <h2>ADMIN SIGN IN</h2>
                     </div>
 
                     <div class="form-fields">
                         <input type="email" name="email" id="email" placeholder="E-mail*" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
                         <input type="password" name="password" id="password" placeholder="Password*" required>
-                        <a href="">Forgot Password</a>
                     </div>
 
                     <div>
-                        <input id="signin-submit" class="user-submit form-submit" type="submit" value="LOGIN">
-
-                        <a href="signup.html">Sign Up</a>
+                        <input id="admin-submit" class="form-submit" type="submit" value="LOGIN">
                     </div>
                 </form>
             </div>

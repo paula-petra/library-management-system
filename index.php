@@ -30,7 +30,7 @@
                     <li><a class="nav-list-items" href="#books-section">BOOKS</a></li>
                     <li><a class="nav-list-items" href="#contact-section">CONTACT</a></li>
                     <li class="nav-user" id="nav-sign-in"><a href="signin.php">SIGN IN</a></li>
-                    <li class="nav-user" id="nav-admin"><a href="">ADMIN</a></li>
+                    <li class="nav-user" id="nav-admin"><a href="admin.php">ADMIN</a></li>
                 </ul>
             </div>
         </nav>
