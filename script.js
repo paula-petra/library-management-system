@@ -31,6 +31,7 @@ let password = document.getElementById('password');
 let confirmPswd = document.getElementById('confirm-password');
 
 function checkInputs() {
+
     //get the values from the inputs
     let firstnameValue = firstName.value.trim();
     let lastnameValue = lastName.value.trim();
@@ -115,19 +116,26 @@ function setErrorFor(input, message) {
 
     //add error class
     formControl.className ='form-control error';
+
+    return false;
 };
 
 function setSuccessFor(input) {
     let formControl = input.parentElement;
     formControl.className = 'form-control success';
+    return true;
 };
 
 function isEmail(email) {
 	return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 }
 
-function submitSignUp(){
-    if(firstName.parentElement.className === 'form-control success' && lastName.parentElement.className === 'form-control success' && phoneNum.parentElement.className === 'form-control success' && email.parentElement.className === 'form-control success' && password.parentElement.className === 'form-control success' && confirmPswd.parentElement.className === 'form-control success') {
-        alert('SIGN UP SUCCESSFUL!');
-    }
-}
+// function submitSignUp(){
+//     let submitBtn = document.getElementById('submit-control');
+
+//     if(firstName.parentElement.className === 'form-control success' && lastName.parentElement.className === 'form-control success' && phoneNum.parentElement.className === 'form-control success' && email.parentElement.className === 'form-control success' && password.parentElement.className === 'form-control success' && confirmPswd.parentElement.className === 'form-control success') {
+//         //alert('SIGN UP SUCCESSFUL!');`
+//     } else{
+//         submitBtn.disabled = true;
+//     }
+// }
