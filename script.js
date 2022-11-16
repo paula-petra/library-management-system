@@ -1,27 +1,3 @@
-// var form = document.getElementById('signup-form');
-// function handleForm(event) {event.preventDefault();}
-// form.addEventListener('submit', handleForm);
-
-//let signupBtn = document.getElementById('signup-submit');
-
-//Checking Password Match
-// function checkPassword(){
-//     let password = document.getElementById('password').value;
-//     let confirmPassword = document.getElementById('confirm-password').value;
-//     console.log(password, confirmPassword);
-//     let passwordMsg = document.getElementById('password-msg');
-    
-//     if (password.length != 0){
-//         if(password == confirmPassword){
-//             passwordMsg.textContent = "Passwords Match!";
-//             passwordMsg.style.backgroundColor = "#41c45d";
-//         } else{
-//             passwordMsg.textContent = "Passwords Don't Match!";
-//             passwordMsg.style.backgroundColor = "#e8021d";
-//         }
-//     }
-// }
-
 let form = document.getElementById('signup-form');
 let firstName = document.getElementById('firstName');
 let lastName = document.getElementById('lastName');
@@ -30,20 +6,28 @@ let email = document.getElementById('email');
 let password = document.getElementById('password');
 let confirmPswd = document.getElementById('confirm-password');
 
+let firstnameValue;
+let lastnameValue;
+let phonenumValue;
+let emailValue;
+let passwordValue;
+let confirmpswdValue;
+
 function checkInputs() {
 
     //get the values from the inputs
-    let firstnameValue = firstName.value.trim();
-    let lastnameValue = lastName.value.trim();
-    let phonenumValue = phoneNum.value.trim();
-    let emailValue = email.value.trim();
-    let passwordValue = password.value.trim();
-    let confirmpswdValue = confirmPswd.value.trim();
+    firstnameValue = firstName.value.trim();
+    lastnameValue = lastName.value.trim();
+    phonenumValue = phoneNum.value.trim();
+    emailValue = email.value.trim();
+    passwordValue = password.value.trim();
+    confirmpswdValue = confirmPswd.value.trim();
 
     if(firstnameValue === '') {
         // show error
         // add error class
         setErrorFor(firstName, 'First Name cannot be blank!');
+        return;
     } else {
         //add success class
         setSuccessFor(firstName);
@@ -53,6 +37,7 @@ function checkInputs() {
         // show error
         // add error class
         setErrorFor(lastName, 'Last Name cannot be blank!');
+        return;
     } else {
         //add success class
         setSuccessFor(lastName);
@@ -62,16 +47,18 @@ function checkInputs() {
         // show error
         // add error class
         setErrorFor(phoneNum, 'Phone Number cannot be blank!');
+        return;
     } else {
         if (phonenumValue.length < 10 || phonenumValue.length > 12) {
             setErrorFor(phoneNum, 'Invalid Phone Number!');
+            return;
         } else {
             if (phonenumValue.match(/^[0-9]{10}$/) || phonenumValue.match(/^[0-9]{11}$/) || phonenumValue.match(/^[0-9]{12}$/)) {
                 //add success class
                 setSuccessFor(phoneNum);
             } else {
                 setErrorFor(phoneNum, 'Enter Numerical Digits Only!');
-
+                return;
             }
         }
     }
@@ -80,8 +67,10 @@ function checkInputs() {
         // show error
         // add error class
         setErrorFor(email, 'E-mail cannot be blank!');
+        return;
     } else if (!isEmail(emailValue)) {
 		setErrorFor(email, 'Invalid e-mail!');
+        return;
 	} else {
 		setSuccessFor(email);
 	}
@@ -90,6 +79,7 @@ function checkInputs() {
         // show error
         // add error class
         setErrorFor(password, 'Password cannot be blank!');
+        return;
     } else {
         //add success class
         setSuccessFor(password);
@@ -99,12 +89,18 @@ function checkInputs() {
         // show error
         // add error class
         setErrorFor(confirmPswd, 'Password cannot be blank!');
-    } else if (confirmpswdValue !== passwordValue) {
+        return;
+    } 
+    
+     if (confirmpswdValue !== passwordValue) {
         setErrorFor(confirmPswd, "Passwords don't match!");
+        return;
     } else{
         //add success class
         setSuccessFor(confirmPswd);
     }
+
+    submitSignUp();
 };
 
 function setErrorFor(input, message) {
@@ -116,26 +112,49 @@ function setErrorFor(input, message) {
 
     //add error class
     formControl.className ='form-control error';
-
-    return false;
 };
 
 function setSuccessFor(input) {
     let formControl = input.parentElement;
     formControl.className = 'form-control success';
-    return true;
 };
 
 function isEmail(email) {
 	return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 }
 
-// function submitSignUp(){
-//     let submitBtn = document.getElementById('submit-control');
+function submitSignUp(){
 
-//     if(firstName.parentElement.className === 'form-control success' && lastName.parentElement.className === 'form-control success' && phoneNum.parentElement.className === 'form-control success' && email.parentElement.className === 'form-control success' && password.parentElement.className === 'form-control success' && confirmPswd.parentElement.className === 'form-control success') {
-//         //alert('SIGN UP SUCCESSFUL!');`
-//     } else{
-//         submitBtn.disabled = true;
-//     }
-// }
+    var form = document.getElementById('signup-form');
+    function handleForm(event) {event.preventDefault();}
+    form.addEventListener('submit', handleForm);
+
+    $.ajax({
+        url: "./connect.php",
+        type: "POST",
+        cache: false,
+        data:{firstName:firstnameValue, lastName:lastnameValue, phoneNo:phonenumValue, email:emailValue, password:passwordValue },
+        success: function (response)
+        {
+            
+            if(response == "success"){
+                 swal({
+                  title: "success",
+                  text: "Sign Up Successful!",
+                  buttons: true
+                });
+            
+            }else{
+                swal({
+                  title: "failed",
+                  text: "Sign Up Failed!",
+                  buttons: true
+                });
+            }
+            
+            
+           
+        }
+    
+    });
+}

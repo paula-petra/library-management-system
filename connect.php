@@ -6,14 +6,18 @@
     $password = $_POST['password'];
 
     //Database connection
-    $conn = new mysqli('localhost', 'root', '', 'librarymanagementsystem');
+    $conn = new mysqli('localhost', 'root', '', 'librarymanagementsystem'); 
     if($conn->connect_error){
         die('Connection Failed : '.$conn->connect_error);
-    }else{
+    }else{        
         $stmt = $conn->prepare("insert into signup_form(firstName, lastName, phoneNumber, email, password)values(?, ?, ?, ?, ?)");
         $stmt->bind_param("ssiss",$firstName, $lastName, $phoneNumber, $email, $password);
-        $stmt->execute();
-        echo "Sign Up Successful!";
+        if($stmt->execute()){
+            echo "success";
+        }else{
+            echo "failed";
+        }
+        
         $stmt->close();
         $conn->close();
     }

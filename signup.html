@@ -38,7 +38,7 @@
 
         <main class="form-pages">
             <div class="form-container">
-                <form id="signup-form" action="connect.php" method="post"> <!-- action="connect.php" method="post" -->
+                <form id="signup-form"> <!-- action="connect.php" method="post" -->
                     <div class="form-title">
                         <h2>USER SIGN UP</h2>
                     </div>
@@ -65,14 +65,13 @@
                             <small>error message</small>
                         </div>
                         <div class="form-control">
-                            <input type="password" name="password" id="confirm-password" placeholder="Confirm Password*" required>
+                            <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm Password*" required>
                             <small>error message</small>
                         </div>
                     </div>
 
                     <div id="submit-control" class="form-control">
-                        <input onclick="checkInputs();submitSignUp()" id="signup-submit" class="user-submit form-submit" type="submit" value="SIGN UP" >
-                        <a href="signin.php">Sign In</a>
+                        <button onclick="checkInputs()" id="signup-submit" type="button" class="user-submit form-submit">Sign Up</button>                        <a href="signin.php">Sign In</a>
                     </div>
                 </form>
             </div>
@@ -84,5 +83,7 @@
     
 </body>
 
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 <script src="script.js"></script>
 </html>
