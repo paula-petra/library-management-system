@@ -136,7 +136,7 @@ function submitSignUp(){
         data:{firstName:firstnameValue, lastName:lastnameValue, phoneNo:phonenumValue, email:emailValue, password:passwordValue },
         success: function (response)
         {
-            
+            console.log(response); 
             if(response == "success"){
                  swal({
                   title: "success",
@@ -144,12 +144,18 @@ function submitSignUp(){
                   buttons: true
                 });
             
-            }else{
+            }else if (response == "failed"){
                 swal({
                   title: "failed",
                   text: "Sign Up Failed!",
                   buttons: true
                 });
+            }else{
+                swal({
+                    title: "failed",
+                    text: "Email Already In Use!",
+                    buttons: true
+                  });
             }
             
             
@@ -158,3 +164,13 @@ function submitSignUp(){
     
     });
 }
+
+$('.menu-icon').click(function(){
+    $('.side-nav').toggleClass('show');
+    $('#open-nav').toggleClass('hide');
+    $('#close-btn').toggleClass('show');
+});
+
+// $('.menu-container ul li').click(function(){
+//     $(this).addClass('active').siblings().removeClass('active');
+// });
