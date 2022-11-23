@@ -22,7 +22,7 @@
     if($conn->affected_rows > 0)
     {
    
-        echo "exists";
+        echo "failed";
         return;
         
     }

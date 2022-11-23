@@ -171,6 +171,3 @@ $('.menu-icon').click(function(){
     $('#close-btn').toggleClass('show');
 });
 
-// $('.menu-container ul li').click(function(){
-//     $(this).addClass('active').siblings().removeClass('active');
-// });
