@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Library Management System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+        <header class="page-header">
+
+            <nav class="nav-bar" id="main-nav">
+
+                <div>
+                    <a href="index.html" class="page-title">LIBRARY MANAGEMENT SYSTEM</a>
+                </div>
+
+                <div>
+                    <ul class="main-nav-list">
+                        <li><a class="nav-list-items" href="index.html#services-section">SERVICES</a></li>
+                        <li><a class="nav-list-items" href="index.html#books-section">BOOKS</a></li>
+                        <li><a class="nav-list-items" href="index.html#contact-section">CONTACT</a></li>
+                        <li class="nav-user" id="nav-sign-in"><a href="signin.html">SIGN IN</a></li>
+                        <li class="nav-user" id="nav-admin"><a href="admin_signin.html">ADMIN</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <main class="form-pages">
+            <div class="form-container">
+                <form id="signin-form" action="" method="post">
+                    <div class="form-title">
+                        <h2>USER SIGN IN</h2>
+                    </div>
+
+                    <div class="form-fields">
+                        <div class="form-control">
+                            <input type="email" name="email" id="email" placeholder="E-mail*" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                            <small>error message</small>
+                        </div>
+                        <div class="form-control">
+                            <input type="password" name="password" id="password" placeholder="Password*" required>
+                            <small>error message</small>
+                        </div>
+                        <a href="">Forgot Password</a>
+                    </div>
+
+                    <div>
+                        <input onclick="checkInputs()" id="signin-submit" class="user-submit form-submit" name="submit" type="submit" value="LOGIN">
+
+                        <a href="signup.html">Sign Up</a>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+        <footer>
+            <p>Designed and Developed by <b><a href="https://portfolio-task.paulapetra.repl.co/" target="_blank">Paula-Petra.</a></b></p>
+        </footer>
+    
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<script>
+    function checkInputs() {
+
+        //get the values from the inputs
+        emailValue = email.value.trim();
+        passwordValue = password.value.trim();
+
+        if(emailValue === '') {
+            // show error
+            // add error class
+            setErrorFor(email, 'E-mail cannot be blank!');
+            return;
+        } else if (!isEmail(emailValue)) {
+            setErrorFor(email, 'Invalid e-mail!');
+            return;
+        } else {
+            setSuccessFor(email);
+        }
+
+        if(passwordValue === '') {
+            // show error
+            // add error class
+            setErrorFor(password, 'Password cannot be blank!');
+            return;
+        } else {
+            //add success class
+            setSuccessFor(password);
+        }
+
+        submitSignUp();
+        };
+
+    function setErrorFor(input, message) {
+        let formControl = input.parentElement;
+        let small = formControl.querySelector('small');
+
+        //add error message inside small
+        small.innerText = message;
+
+        //add error class
+        formControl.className ='form-control error';
+    };
+
+    function setSuccessFor(input) {
+        let formControl = input.parentElement;
+        formControl.className = 'form-control success';
+    };
+
+    function isEmail(email) {
+        return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+    }
+
+    function submitSignUp(){
+
+        var form = document.getElementById('signin-form');
+        function handleForm(event) {event.preventDefault();}
+        form.addEventListener('submit', handleForm);
+        $.ajax({
+            url: "./login.php",
+            type: "POST",
+            cache: false,
+            data:{email:emailValue, password:passwordValue},
+            success: function (response)
+            {
+                console.log(response); 
+                if(response == "success"){
+                    window.location.replace("user.php");            
+                }else{
+                    swal({
+                        title: "failed",
+                        text: "Incorrect email or password!",
+                        buttons: true
+                    });
+                }        
+            }
+        
+        });
+    }
+</script>
+
+</html>
