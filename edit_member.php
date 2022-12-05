@@ -77,7 +77,7 @@ $conn = new mysqli('localhost', 'root', '', 'librarymanagementsystem');
                             if(mysqli_num_rows($members_run) > 0){
                                 foreach($members_run as $member){
                                     ?>
-                                         <form class="editmember-form" action="">
+                                         <form class="editmember-form">
                                             <div class="editform-container">
                                                 <div class="edit-inputs">
                                                     <div class="form-control">
@@ -105,6 +105,8 @@ $conn = new mysqli('localhost', 'root', '', 'librarymanagementsystem');
                                                         <input type="text" name="password" value="<?=$member['password'];?>" id="password">
                                                         <small>error message</small>
                                                     </div>
+
+                                                    <input type="hidden" id="member-id" value="<?=$member['id'];?>">
                                                 </div>
                                                 <div>
                                                     <button onclick="checkInputs()" type="submit" class="edit">UPDATE MEMBER</button>
@@ -133,6 +135,8 @@ $conn = new mysqli('localhost', 'root', '', 'librarymanagementsystem');
     </body>
 
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
     <script>
         let form = document.querySelector('.editmember-form');
         let firstName = document.getElementById('firstName');
@@ -148,6 +152,12 @@ $conn = new mysqli('localhost', 'root', '', 'librarymanagementsystem');
         let passwordValue;
 
         function checkInputs() {
+
+            var form = document.querySelector('.editmember-form');
+            var id = document.getElementById('member-id').value;
+            function handleForm(event) {event.preventDefault();}
+            form.addEventListener('submit', handleForm);
+
 
             //get the values from the inputs
             firstnameValue = firstName.value.trim();
@@ -243,7 +253,8 @@ $conn = new mysqli('localhost', 'root', '', 'librarymanagementsystem');
 
         function submitSignUp(){
 
-            var form = document.getElementById('signup-form');
+            var form = document.querySelector('.editmember-form');
+            var id = document.getElementById('member-id').value;
             function handleForm(event) {event.preventDefault();}
             form.addEventListener('submit', handleForm);
 
@@ -251,7 +262,7 @@ $conn = new mysqli('localhost', 'root', '', 'librarymanagementsystem');
                 url: "./edit.php",
                 type: "POST",
                 cache: false,
-                data:{firstName:firstnameValue, lastName:lastnameValue, phoneNo:phonenumValue, email:emailValue, password:passwordValue },
+                data:{member_id:id, firstName:firstnameValue, lastName:lastnameValue, phoneNo:phonenumValue, email:emailValue, password:passwordValue },
                 success: function (response)
                 {
                     console.log(response); 

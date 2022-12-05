@@ -55,7 +55,7 @@
                         </div>
 
                         <div>
-                            <input onclick="adminAuth()" id="admin-submit" class="form-submit" type="submit" value="LOGIN">
+                            <input onclick="checkInputs()" id="admin-submit" class="form-submit" type="submit" value="LOGIN">
                         </div>
                     </form>
                 </div>
@@ -67,17 +67,18 @@
         
     </body>
 
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script>
-        document.getElementById("admin-submit").addEventListener("click", function(event){
-            event.preventDefault()
-            });
-        function adminAuth(){
-            let email = document.getElementById('email');
-            let emailValue = document.getElementById('email').value;
-            let password = document.getElementById('password');
-            let passwordValue = document.getElementById('password').value;
+        function checkInputs() {
+
+            //get the values from the inputs
+            emailValue = email.value.trim();
+            passwordValue = password.value.trim();
 
             if(emailValue === '') {
+                // show error
+                // add error class
                 setErrorFor(email, 'E-mail cannot be blank!');
                 return;
             } else if (!isEmail(emailValue)) {
@@ -88,37 +89,63 @@
             }
 
             if(passwordValue === '') {
+                // show error
+                // add error class
                 setErrorFor(password, 'Password cannot be blank!');
                 return;
             } else {
+                //add success class
                 setSuccessFor(password);
             }
 
-            function setErrorFor(input, message) {
-                let formControl = input.parentElement;
-                let small = formControl.querySelector('small');
-
-                //add error message inside small
-                small.innerText = message;
-
-                //add error class
-                formControl.className ='form-control error';
+            submitSignUp();
             };
 
-            function setSuccessFor(input) {
-                let formControl = input.parentElement;
-                formControl.className = 'form-control success';
-            };
+        function setErrorFor(input, message) {
+            let formControl = input.parentElement;
+            let small = formControl.querySelector('small');
 
-            function isEmail(email) {
-                return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
-            }
+            //add error message inside small
+            small.innerText = message;
 
-            if(emailValue === 'admin@library.com' && passwordValue === 'admin123'){
-                window.location.assign('admin.php');
-            }else{
-                alert('ACCESS DENIED!');
-            }
+            //add error class
+            formControl.className ='form-control error';
+        };
+
+        function setSuccessFor(input) {
+            let formControl = input.parentElement;
+            formControl.className = 'form-control success';
+        };
+
+        function isEmail(email) {
+            return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+        }
+
+        function submitSignUp(){
+
+            var form = document.getElementById('admin-form');
+            function handleForm(event) {event.preventDefault();}
+            form.addEventListener('submit', handleForm);
+            $.ajax({
+                url: "./admin_login.php",
+                type: "POST",
+                cache: false,
+                data:{email:emailValue, password:passwordValue},
+                success: function (response)
+                {
+                    console.log(response); 
+                    if(response == "success"){
+                        window.location.replace("admin.php");            
+                    }else{
+                        swal({
+                            title: "failed",
+                            text: "Incorrect email or password!",
+                            buttons: true
+                        });
+                    }        
+                }
+            
+            });
         }
     </script>
 

@@ -2,6 +2,9 @@
 session_start();
 
 $conn = new mysqli('localhost', 'root', '', 'librarymanagementsystem');
+if($_SESSION['user'] == null){
+    header('location:admin_signin.html');
+}
 $members = "SELECT * FROM signup_form";
 $members_run = mysqli_query($conn, $members);
 

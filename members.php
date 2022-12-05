@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+$conn = new mysqli('localhost', 'root', '', 'librarymanagementsystem');
+if($_SESSION['user'] == null){
+    header('location:admin_signin.html');
+}
+?>
 <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -56,6 +64,10 @@
                             <h2>MEMBERS</h2>
                         </div>
 
+                        <div class="php-message">
+                            <?php include('message.php');?>
+                        </div>
+
                         <div class="member-body">
                             <table class="members-table">
                                 <thead>
@@ -72,9 +84,7 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                    session_start();
-                                    $conn = new mysqli('localhost', 'root', '', 'librarymanagementsystem');
-
+                                    
                                     $query = "SELECT * FROM signup_form";
                                     $query_run = mysqli_query($conn, $query);
 
@@ -89,7 +99,11 @@
                                                 <td><?= $row['phoneNumber']; ?></td>
                                                 <td><a  class="table-btns" id="view-user" href="">VIEW USER</a></td>
                                                 <td><a class="table-btns edit" href="edit_member.php?id=<?= $row['id']; ?>">EDIT</a></td>
-                                                <td><a class="table-btns" id="delete" href="">DELETE</a></td>
+                                                <td>
+                                                    <form action="delete.php" method="POST">
+                                                        <button type="submit" class="table-btns" id="delete" name="delete-user" value="<?= $row['id']; ?>">DELETE</button>
+                                                    </form>
+                                                </td>
                                             </tr>
                                             <?php
                                         }
@@ -114,4 +128,9 @@
 
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <script src="script.js"></script>
+    <script>
+        $('.msg-icon').click(function(){
+            $('.php-message').toggleClass('hide');
+        });
+    </script>
 </html>

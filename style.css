@@ -156,11 +156,112 @@ header{
     width: 60%;
 }
 
-#services-container{
+.services-container{
     width: 60%;
     display: flex;
     flex-direction: row;
     gap: 20px;
+}
+
+/* #book-body{
+    height: 100vh;
+} */
+
+.book-body .section-title{
+    z-index: 3;
+    position: fixed;
+    top: 68px;
+}
+
+#books-container{
+    margin-top: 208px;
+    margin-bottom: 5em;
+    display: grid;
+    grid-template-areas: 
+    'a b c'
+    'd e f';
+}
+
+#books-container:nth-child(1){
+    grid-area: a;
+}
+
+#books-container:nth-child(2){
+    grid-area: b;
+}
+
+#books-container:nth-child(3){
+    grid-area: c;
+}
+
+#books-container:nth-child(4){
+    grid-area: d;
+}
+
+#books-container:nth-child(5){
+    grid-area: e;
+}
+
+#books-container:nth-child(6){
+    grid-area: f;
+}
+
+.searchbar-container{
+    background-color: #fff;
+    position: fixed;
+    top: 138px;
+    width: 60%;
+    height: 100px;
+    margin: 0 0 4em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-bar{
+    width: 40%;
+    height: 60px;
+    background: rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    border-radius: 50px;
+    padding: 10px 20px;
+    backdrop-filter: blur(4px) saturate(180%);
+}
+
+.search-bar input{
+    background: transparent;
+    flex: 1;
+    border: 0;
+    outline: none;
+    padding: 0 20px;
+    font-size: 1.125em;
+}
+
+.search-bar button img{
+    width: 25px;
+}
+
+.search-bar button{
+    border: 0;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.search-bar button:hover{
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.book-list{
+    width: 350px;
+    height: auto;
+    background-color: #f5f5f5;
+    border-radius: 20px;
 }
 
 .service-list{
@@ -526,6 +627,10 @@ form a{
     'e f g h';
 }
 
+#user-body .dashboard-cards{
+    height: 60%;
+}
+
 .card{
     border-radius: 20px;
     padding: 2em;
@@ -634,13 +739,42 @@ form a{
 }
 
 #delete{
+    border: 0;
+    padding: 0.5em 1em;
     background-color: #e8021d;
     color: white;
     transition: 0.2s;
+    cursor: pointer;
 }
 
 #delete:hover{
     background-color: #c0041a;
+}
+
+.php-message{
+    width: 20%;
+    margin: 0.5em 0;
+    background-color: #e8021d;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.25em 0.75em;
+}
+
+.php-message.hide{
+    display: none;
+}
+
+.php-message p{
+    color: white;
+}
+
+.php-message a{ 
+    cursor: pointer;
+}
+
+.php-message a img{
+    width: 1.25em;
 }
 
 .members-nav{

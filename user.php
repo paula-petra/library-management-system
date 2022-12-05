@@ -2,7 +2,9 @@
 session_start();
 
 $conn = new mysqli('localhost', 'root', '', 'librarymanagementsystem');
-
+if($_SESSION['user'] == null){
+    header('location:signin.html');
+}
 $email = $_SESSION["user"];
 $result = mysqli_query($conn, "SELECT * FROM signup_form WHERE email = '$email' ");
 $row = mysqli_fetch_assoc($result);
@@ -50,8 +52,8 @@ $row = mysqli_fetch_assoc($result);
                     <ul>
                         <li><a href="">Dashboard</a></li>
                         <li><a href="">Books</a></li>
-                        <li><a href="">Reserve</a></li>
-                        <li><a href="">Issue</a></li>
+                        <li><a href="">Reserved Books</a></li>
+                        <li><a href="">Issued Books</a></li>
                         <li><a href="">Profile</a></li>
                     </ul>
                 </div>
@@ -67,12 +69,55 @@ $row = mysqli_fetch_assoc($result);
                         <div class="welcome-text">
                             <h1>Welcome back, <span><?php echo $row["firstName"]?></span>!</h1>
                         </div>
+
                         <div class="dashboard-cards">
-                            <div class="card"></div>
-                            <div class="card"></div>
-                            <div class="card"></div>
-                            <div class="card"></div>
+
+                            <div class="card">
+                                <div class="card-sections">
+                                    <p>Books</p>
+                                </div>
+                                <div class="card-sections">
+                                    <h1>X</h1></div>
+                                <div class="card-sections">
+                                    <p>Total books available</p>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-sections">
+                                    <p>Reserved Books</p>
+                                </div>
+                                <div class="card-sections">
+                                    <h1>X</h1></div>
+                                <div class="card-sections">
+                                    <p>Total books reserved</p>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-sections">
+                                    <p>Issued Books</p>
+                                </div>
+                                <div class="card-sections">
+                                    <h1>X</h1></div>
+                                <div class="card-sections">
+                                    <p>Total books issued</p>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-sections">
+                                    <p>Returned Books</p>
+                                </div>
+                                <div class="card-sections">
+                                    <h1>X</h1></div>
+                                <div class="card-sections">
+                                    <p>Total books returned</p>
+                                </div>
+                            </div>
+
                         </div>
+
                     </div>
                 </section>
                 
