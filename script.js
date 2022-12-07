@@ -171,3 +171,67 @@ $('.menu-icon').click(function(){
     $('#close-btn').toggleClass('show');
 });
 
+const search = () => {
+    const searchbox = document.getElementById('search-books').value.toUpperCase();
+    const bookList = document.getElementById('books-container');
+    const books = document.querySelectorAll('.book');
+    const bookName = bookList.getElementsByTagName('h3');
+    const footer = document.getElementsByTagName('footer');
+
+    const searchboxValue = document.getElementById('search-books').value;
+
+    for(var i = 0; i < bookName.length; i++){
+        let match =  books[i].getElementsByTagName('h3')[0];
+
+        if(match){
+            let textvalue = match.textContent || match.innerHTML;
+
+
+
+            if(textvalue.toUpperCase().indexOf(searchbox) >= 0){
+                books[i].style.display = "";
+                footer[0].style.display = "none";
+                
+            }else{
+                books[i].style.display = "none";
+                footer[0].style.display = "none";
+            }
+        }
+    }
+}
+
+function Reserve(id, title, email, coverImage) {
+    //send parameter to the backend
+    $.ajax({
+      type: "POST",
+      url: "reserveBooks.php",
+      data: {
+        email: email,
+        id: id,
+        title: title,
+        coverImage: coverImage
+      },
+      success: function(data) {
+        if (data === "success") {
+          alert("Book successfully reserved");
+        } else if (data === "found") {
+          alert("Selected book already reserved !!")
+        } else {
+          alert("500!!.  Failed to reserved book !!");
+        }
+      },
+      error: function() {
+        alert("404!!. Client side error !!")
+      }
+    })
+  }
+
+  //fetched books
+  $.ajax({
+    type: "GET",
+    url: "getBooks.php",
+    dataType: "html",
+    success: function(data) {
+      $("#books-container").html(data);
+    }
+  });

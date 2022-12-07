@@ -163,14 +163,19 @@ header{
     gap: 20px;
 }
 
-/* #book-body{
-    height: 100vh;
-} */
+.book-body{
+    min-height: 100vh;
+}
+
+.book-body #books-section{
+    height: 100%;
+}
 
 .book-body .section-title{
     z-index: 3;
     position: fixed;
     top: 68px;
+    background-color: #fff;
 }
 
 #books-container{
@@ -257,7 +262,9 @@ header{
     background: rgba(0, 0, 0, 0.2);
 }
 
-.book-list{
+.book{
+    display: flex;
+    flex-direction: column;
     width: 350px;
     height: auto;
     background-color: #f5f5f5;
@@ -754,11 +761,6 @@ form a{
 .php-message{
     width: 20%;
     margin: 0.5em 0;
-    background-color: #e8021d;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.25em 0.75em;
 }
 
 .php-message.hide{
@@ -766,7 +768,12 @@ form a{
 }
 
 .php-message p{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     color: white;
+    background-color: #e8021d;
+    padding: 0.25em 0.75em;
 }
 
 .php-message a{ 
@@ -857,4 +864,21 @@ form a{
     border: 0;
     border-radius: 5px;
     padding: 0.75em;
+}
+
+.reserve-btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.reserve-btn a{
+    color: black;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 0.25em ;
+    transition: 0.2s;
+}
+
+.reserve-btn a:hover{
+    background-color: rgba(0, 0, 0, 0.3);
 }

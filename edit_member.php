@@ -2,6 +2,9 @@
 session_start();
 $conn = new mysqli('localhost', 'root', '', 'librarymanagementsystem');
 
+if($_SESSION['user'] == null){
+    header('location:admin_signin.html');
+}
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +49,7 @@ $conn = new mysqli('localhost', 'root', '', 'librarymanagementsystem');
                         <li><a href="admin.php">Dashboard</a></li>
                         <li><a href="members.php">Members</a></li>
                         <li><a href="">Users</a></li>
-                        <li><a href="">Books</a></li>
+                        <li><a href="books-admin.php">Books</a></li>
                         <li><a href="">Reserved Books</a></li>
                         <li><a href="">Issued Books</a></li>
                         <li><a href="">Not Returned</a></li>

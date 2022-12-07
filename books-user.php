@@ -5,9 +5,6 @@ $conn = new mysqli('localhost', 'root', '', 'librarymanagementsystem');
 if($_SESSION['user'] == null){
     header('location:signin.html');
 }
-$email = $_SESSION["user"];
-$result = mysqli_query($conn, "SELECT * FROM signup_form WHERE email = '$email' ");
-$row = mysqli_fetch_assoc($result);
 
 ?>
 
@@ -27,7 +24,7 @@ $row = mysqli_fetch_assoc($result);
         <link rel="stylesheet" href="style.css">
     </head>
 
-    <body class="dashboard-body" id="user-body">
+    <body class="page-container" id="user-body">
 
             <header class="page-header">
 
@@ -59,68 +56,56 @@ $row = mysqli_fetch_assoc($result);
                 </div>
             </nav>
 
-            <main class="">
-                <section class="dashboard-container">
-                    <div class="dashboard-box">
+            <main class="book-body">
+
+                <section class="home-sections" id="books-section">
+                    
+                    <div class="section-box">
                         <div class="section-title">
-                            <h2>DASHBOARD</h2>
+                            <h2>BOOKS</h2>
                         </div>
 
-                        <div class="welcome-text">
-                            <h1>Welcome back, <span><?php echo $row["firstName"]?></span>!</h1>
+                        <div class="searchbar-container">
+                            <form action="" class="search-bar">
+                                <input onkeyup="search()" type="text" id="search-books" placeholder="search books" name="q">
+                                <button type="submit"><img src="imgs/icons8-search-50.png" alt=""></button>
+                            </form>
                         </div>
 
-                        <div class="dashboard-cards">
+                        <div class="services-container" id="books-container">
 
-                            <div class="card">
-                                <div class="card-sections">
-                                    <p>Books</p>
-                                </div>
-                                <div class="card-sections">
-                                    <h1>X</h1></div>
-                                <div class="card-sections">
-                                    <p>Total books available</p>
-                                </div>
-                            </div>
+                            <?php
+                                $query = "SELECT * FROM books";
+                                $query_run = mysqli_query($conn, $query);
 
-                            <div class="card">
-                                <div class="card-sections">
-                                    <p>Reserved Books</p>
+                                if(mysqli_num_rows($query_run) > 0){
+                                    foreach($query_run as $row){
+                                        ?>
+                                
+                                <div class="book">
+                                    <div class="service-img">
+                                        <img src="imgs/<?= $row['coverImage']; ?>" alt="">
+                                    </div>
+                                    <div class="service-info">
+                                        <h3><?= $row['title']; ?></h3>
+                                        <p>AUTHOR: <?= $row['author']; ?></p>
+                                        <p>QUANTITY: <?= $row['quantity']; ?></p>
+                                    </div>
+                                    <div class="reserve-btn"><a href="">RESERVE</a></div>
                                 </div>
-                                <div class="card-sections">
-                                    <h1>X</h1></div>
-                                <div class="card-sections">
-                                    <p>Total books reserved</p>
-                                </div>
-                            </div>
-
-                            <div class="card">
-                                <div class="card-sections">
-                                    <p>Issued Books</p>
-                                </div>
-                                <div class="card-sections">
-                                    <h1>X</h1></div>
-                                <div class="card-sections">
-                                    <p>Total books issued</p>
-                                </div>
-                            </div>
-
-                            <div class="card">
-                                <div class="card-sections">
-                                    <p>Returned Books</p>
-                                </div>
-                                <div class="card-sections">
-                                    <h1>X</h1></div>
-                                <div class="card-sections">
-                                    <p>Total books returned</p>
-                                </div>
-                            </div>
-
+                                <?php
+                                }
+                            }else{
+                                ?>
+                                <h3>No Record Found</h3>
+                            <?php
+                            }
+                            ?>
                         </div>
-
+                    
                     </div>
                 </section>
-                
+
             </main>
 
             <footer>
